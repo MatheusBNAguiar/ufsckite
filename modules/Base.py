@@ -5,6 +5,7 @@ class Base:
         RATO_FILE = r"./rato" + str(nodeId) + ".txt"
         
         self.swarm = SwarmNode('/dev', True, True)
+        self.swarm.open_port()
         self.nodeId = nodeId
         self.file = open(RATO_FILE, 'w')
 
