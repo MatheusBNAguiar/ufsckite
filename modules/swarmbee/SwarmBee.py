@@ -10,7 +10,6 @@ class SwarmBee:
     def __init__(self, vccPin = 17, modPin = 27, aModePin = 22, ttyPort="/dev/ttyAMA0" ):
         self.ttyPort = ttyPort
         self.serial = self.buildSerial( vccPin, modPin, aModePin, ttyPort )
-        return self
 
     def buildSerial(self, vccPin, modPin, aModePin, ttyPort):
         pinVCC = GPIO( vccPin , "high")
