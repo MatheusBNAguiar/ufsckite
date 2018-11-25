@@ -30,7 +30,7 @@ class SwarmBee:
     def readOnSerial(self):
         res = None
         self.serial.flush()
-        if self.serial.poll(100):
+        if self.serial.poll(1):
             print('Aqui')
             inComing = self.serial.input_waiting()
             buffer = self.serial.read(inComing, 10)
@@ -43,7 +43,7 @@ class SwarmBee:
         
         operationWithParameter = str(operation) + " " + str(parameter) + "\r\n"
         operationWithParameter = operationWithParameter.encode('utf-8')
-
+        print(operationWithParameter)
         self.serial.write(operationWithParameter)
     
     def runProcess(self, operation, parameter = ""):
