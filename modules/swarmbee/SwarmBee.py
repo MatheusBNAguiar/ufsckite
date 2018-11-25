@@ -27,6 +27,18 @@ class SwarmBee:
     def getDistance(self, nodeId):
         return self.runProcess('RATO 0', nodeId)
 
+    def getSettings(self):
+        return self.runProcess('GSET')
+
+    def setPowerMode(self):
+        return self.runProcess('SPSA 0')
+
+    def setPowerMode(self):
+        return self.runProcess('GFWV')
+    
+    def baseSettings(self):
+        return self.runProcess('ERRN 0')
+
     def readOnSerial(self):
         res = None
         self.serial.flush()

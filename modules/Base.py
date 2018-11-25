@@ -8,8 +8,10 @@ class Base:
         self.file = open(RATO_FILE, 'w')
 
     def getDistance(self, node):
-        self.swarm.ranging(node)
-        self.swarm.process_buf(self.file)
+        return self.swarm.getDistance(node)
+
+    def getSettings(self):
+        return self.swarm.getSettings()
 
     def getId(self):
         return self.swarm.getID()
