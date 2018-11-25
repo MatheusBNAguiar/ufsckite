@@ -7,8 +7,9 @@ def treatGNIDString(string):
     return re.sub(r'=ERR|=|\n', "", string.decode('utf-8'))
 
 class SwarmBee:
-    def _init_(self):
-        self.serial = self.buildSerial( 17, 27, 22, "/dev/ttyAMA0" )
+    def __init__(self, vccPin = 17, modPin = 27, aModePin = 22, ttyPort="/dev/ttyAMA0" ):
+        self.ttyPort = ttyPort
+        self.serial = self.buildSerial( vccPin, modPin, aModePin, ttyPort )
         return self
 
     def buildSerial(self, vccPin, modPin, aModePin, ttyPort):
@@ -39,7 +40,7 @@ class SwarmBee:
         return res
 
     def callCommand(self, operation, parameter = ""):
-        subprocess.Popen("sudo chmod 666 /dev/ttyAMA0", shell=True)
+        subprocess.Popen("sudo chmod 666 "+ self.ttyPort, shell=True)
         
         operationWithParameter = str(operation) + " " + str(parameter) + "\r\n"
         operationWithParameter = operationWithParameter.encode('utf-8')
