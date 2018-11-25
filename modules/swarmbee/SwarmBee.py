@@ -35,7 +35,6 @@ class SwarmBee:
             inComing = self.serial.input_waiting()
             buffer = self.serial.read(inComing, 10)
             res = treatGNIDString(buffer)
-        self.serial.close()
         return res
 
     def callCommand(self, operation, parameter = ""):
@@ -43,7 +42,8 @@ class SwarmBee:
         
         operationWithParameter = str(operation) + " " + str(parameter) + "\r\n"
         operationWithParameter = operationWithParameter.encode('utf-8')
-        print(operationWithParameter)
+        print(operationWithParameter
+        )
         self.serial.write(operationWithParameter)
     
     def runProcess(self, operation, parameter = ""):
