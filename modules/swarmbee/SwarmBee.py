@@ -33,7 +33,7 @@ class SwarmBee:
     def setPowerMode(self):
         return self.runProcess('SPSA 0')
 
-    def setPowerMode(self):
+    def getFactory(self):
         return self.runProcess('GFWV')
     
     def baseSettings(self):
@@ -45,7 +45,7 @@ class SwarmBee:
         if self.serial.poll(1):
             print('Aqui')
             inComing = self.serial.input_waiting()
-            buffer = self.serial.read(inComing, 10)
+            buffer = self.serial.read(inComing, 1000)
             res = treatGNIDString(buffer)
         return res
 
