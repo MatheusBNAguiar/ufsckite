@@ -1,5 +1,6 @@
 import sys
-import serial
+# import serial
+from periphery import Serial, GPIO
 
 class SerCom:
     """
