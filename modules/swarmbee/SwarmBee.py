@@ -8,18 +8,14 @@ def treatGNIDString(string):
 
 class SwarmBee:
     def _init_(self, vccPin = 17, modPin = 27, aModePin = 22, ttyPort="/dev/ttyAMA0" ):
-        self.vccPin = vccPin
-        self.modPin = modPin
-        self.aModePin = aModePin
-        self.ttyPort = ttyPort
-        self.serial = self.buildSerial()
+        self.serial = self.buildSerial( vccPin, modPin, aModePin, ttyPort )
         return self
 
-    def buildSerial(self):
-        pinVCC = GPIO( self.vccPin , "high")
-        pinMOD_EN = GPIO( self.modPin , "high")
-        pinA_MODE = GPIO( self.aModePin , "low")
-        serial = Serial( self.ttyPort , baudrate=115200)
+    def buildSerial(self, vccPin, modPin, aModePin, ttyPort):
+        pinVCC = GPIO( vccPin , "high")
+        pinMOD_EN = GPIO( modPin , "high")
+        pinA_MODE = GPIO( aModePin , "low")
+        serial = Serial( ttyPort , baudrate=115200)
         return serial
 
     def getID(self):
