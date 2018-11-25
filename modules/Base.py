@@ -13,6 +13,9 @@ class Base:
     def getSettings(self):
         return self.swarm.getSettings()
 
+    def getSwarm(self):
+        return self.swarm
+
     def getId(self):
         return self.swarm.getID()
     # def setId(self):
