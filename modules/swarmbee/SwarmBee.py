@@ -23,13 +23,13 @@ class SwarmBee:
         return serial
 
     def getID(self):
-        return self.call('GNID')
+        return self.runProcess('GNID')
 
     def setID(self, id):
-        return self.call('SNID', id)
+        return self.runProcess('SNID', id)
 
     def getDistance(self, nodeId):
-        return self.call('RATO 0', nodeId)
+        return self.runProcess('RATO 0', nodeId)
 
     def readOnSerial(self):
         res = None
