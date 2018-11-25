@@ -6,6 +6,7 @@ class Base:
         self.swarm = SwarmBee()
         self.nodeId = nodeId
         self.file = open(RATO_FILE, 'w')
+        return self
 
     def getDistance(self, node):
         self.swarm.ranging(node)
