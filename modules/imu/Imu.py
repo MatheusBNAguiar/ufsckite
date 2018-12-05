@@ -23,9 +23,8 @@ class Imu():
         process = subprocess.Popen(collectCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         
-        samples = re.split(r'\n', output)
+        samples = re.split(r'\n', output.decode('utf-8'))
         samples = samples[-51:]
-        samples = samples.split(" ")
 
         groupedMeasurements = list()
 
