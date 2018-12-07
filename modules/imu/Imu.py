@@ -11,36 +11,23 @@ class Imu():
         self.file = open(file_name+".csv","w")
         self.file.write(";".join(columns) +"\n")
 
+
+        collectCommand = "minimu9-ahrs --output euler $@ "
+        process = subprocess.Popen(collectCommand.split(), stdout=subprocess.PIPE)
+        self.process = process
+
     def getSample(self):
         firstTimestamp = time.time()
         dataCollected = self.collect_data()
         timestamp = mean([time.time(), firstTimestamp])
         finalString = str(timestamp) + ";"
-        finalString = finalString + ";".join(dataCollected) +"\n"
+        finalString = finalString + ";".join(str(v) for v in dataCollected) +"\n"
+        self.file.write(finalString)
 
     def collect_data(self):
-        collectCommand = "minimu9-ahrs --output euler $@ | head -n250"
-        process = subprocess.Popen(collectCommand.split(), stdout=subprocess.PIPE)
-        output, error = process.communicate()
-        
-        samples = re.split(r'\n', output.decode('utf-8'))
-        samples = samples[-51:]
-
-        groupedMeasurements = list()
-
-        for sample in samples:
-            measurements = re.split(r'\s*', sample)
-            for index, measurement in enumerate(measurements):
-                try:
-                    groupedMeasurements[index].append(float(measurement))
-                except:
-                    groupedMeasurements.append([float(measurement)])
-                
-        simplifiedData = map(mean, groupedMeasurements)
-        return simplifiedData
-
-
-imu = Imu("imu")
-for item in range(10):
-    imu.getSample()
-    
+        sample = self.process.stdout.readline()
+        sample = sample.decode('utf-8')
+        sample = re.split(r'\s*', sample)
+        sample = filter(lambda x: x , sample)
+        print(sample)
+        return sample
