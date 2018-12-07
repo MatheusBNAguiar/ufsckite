@@ -10,3 +10,4 @@ sudo rmmod usbserial
 cd ~/release/examples
 make
 
+bash ./pylibftdi.sh
