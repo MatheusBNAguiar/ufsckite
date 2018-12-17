@@ -18,7 +18,7 @@ class Gps:
         ser.open()
         if ser.isOpen():
             print('Open GPS serial port: ' + ser.portstr)
-            
+        return ser
+
     def read_data(self):
-        self.remove_blockage()
         return self.ser.readline()
