@@ -5,7 +5,7 @@ class Gps:
     def __init__(self):
         self.ser = self.init_serial()
 
-    def remove_blockage():
+    def remove_blockage(self):
         subprocess.Popen("sudo rmmod ftdi_sio", shell=True)
         subprocess.Popen("sudo rmmod usbserial", shell=True)
 
@@ -18,7 +18,7 @@ class Gps:
         ser.open()
         if ser.isOpen():
             print('Open GPS serial port: ' + ser.portstr)
-            
+        return ser
+
     def read_data(self):
-        self.remove_blockage()
         return self.ser.readline()
