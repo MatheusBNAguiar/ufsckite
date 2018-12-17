@@ -1,5 +1,3 @@
-#liga
-
 class Measurement():
     def __init__(self, senderModule, receiverModule):
         self.receiverModule = receiverModule
@@ -20,9 +18,6 @@ class Module():
         self.measurementsInstances = []
 
     def setupDistance(self):
-        droneId = '000000000001'
-        masterId = '000000000002'
-        slaveIds = ['000000000003', '000000000004', '000000000005', '000000000006']
 
         # cria instancias de measurement
         for(i in range(len(slaveIds))):
